@@ -1,0 +1,25 @@
+name: 'Auto replay to GH issues'
+description: 'Trying go answer to asked question with using AI'
+inputs:
+  openai-key:
+    description: "openai API key"
+    required: false
+  openai-model:
+    description: "model used by API"
+    default: 'gpt-3.5-turbo'
+    required: false
+  github-token:
+    description: "GitHub token"
+    required: false
+    default: ${{ github.token }}
+  event:
+    description: ''
+    default: ${{ toJson(github.event) }}
+    required: false
+  event-name:
+    description: ''
+    default: ${{ github.event_name }}
+    required: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
